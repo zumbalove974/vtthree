@@ -9,14 +9,22 @@
   "license": "ISC",
   "dependencies": {
     "@turf/turf": "^5.1.6",
+    "data": "^0.6.1",
     "geotiff": "^1.0.0-beta.16",
     "ol": "^6.5.0",
     "ol-mapbox-style": "^6.3.0",
+    "parcel-bundler": "^1.12.4",
     "proj4": "^2.6.3",
     "regenerator-runtime": "^0.13.7",
     "three": "^0.124.0",
     "turf": "^3.0.14"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "parcel-plugin-static-files-copy": "^2.5.0"
+  },
+  "staticFiles": {
+    "staticPath": "data",
+    "watcherGlob": "**"
+  },
   "description": ""
 }
