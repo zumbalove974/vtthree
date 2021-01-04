@@ -6,3 +6,11 @@
 3. Install Visual Studio Code (optional, but recommended): https://code.visualstudio.com
 
 ## Git clone 
+Select the correct branch in github, and clone the repository in your computer:
+1. git clone --repo adress--
+2. Once it is downloaded, run npm install in the downloaded folder
+
+## Running
+
+We will be using parcel.js to compile the code and run it on a local server. Run, in visual studio terminal:
+parcel src/client/index.html
