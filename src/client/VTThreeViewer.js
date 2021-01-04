@@ -135,6 +135,13 @@ export class VTThreeViewer {
     return cube;
   }
 
+  //transforms webmercator coords into three "world" coords
+  getWorldCoords(coords) {
+    let x = (coords[0] - this.mapCenter[0]) / this.zoomFactor;
+    let y = (coords[1] - this.mapCenter[1]) / this.zoomFactor;
+    return [x, y];
+  }
+
   addFeatures(features, mapCenter, zoomFactor, layer, renderMode) {
     this.mapCenter = mapCenter;
     this.zoomFactor = zoomFactor;
