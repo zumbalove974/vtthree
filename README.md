@@ -13,4 +13,4 @@ Select the correct branch in github, and clone the repository in your computer:
 ## Running
 
 We will be using parcel.js to compile the code and run it on a local server. Run, in visual studio terminal:
-parcel src/client/index.html
+npx parcel src/client/index.html (working for all three main OS : Linux/MacOS/Windows)
