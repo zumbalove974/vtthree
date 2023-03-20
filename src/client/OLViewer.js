@@ -13,17 +13,21 @@ export const grisStyle = "Gris";
 export const muetStyle = "Muet";
 
 let ignStyleMap = new Map();
+
 ignStyleMap.set(
   planStyle,
-  "https://vectortiles.ign.fr/demonstrateur/styles/planign.json"
+  "https://wxs.ign.fr/static/vectorTiles/styles/BDTOPO/classique.json"
+  //"https://vectortiles.ign.fr/demonstrateur/styles/planign.json"
 );
 ignStyleMap.set(
   grisStyle,
-  "https://vectortiles.ign.fr/demonstrateur/styles/gris.json"
+  "https://wxs.ign.fr/static/vectorTiles/styles/BDTOPO/classique.json"
+  //"https://vectortiles.ign.fr/demonstrateur/styles/gris.json"
 );
 ignStyleMap.set(
   muetStyle,
-  "https://vectortiles.ign.fr/demonstrateur/styles/muet.json"
+  "https://wxs.ign.fr/static/vectorTiles/styles/BDTOPO/classique.json"
+  //"https://vectortiles.ign.fr/demonstrateur/styles/muet.json"
 );
 
 export class OLViewer {
@@ -55,7 +59,8 @@ export class OLViewer {
         format: new MVT({ featureClass: Feature }),
         //projection: new Projection({ code: "EPSG:3857" }),
         url:
-          "https://vectortiles.ign.fr/rok4server/1.0.0/PLAN.IGN/{z}/{x}/{y}.pbf"
+          "https://wxs.ign.fr/latuile/geoportail/tms/1.0.0/BDTOPO/{z}/{x}/{y}.pbf"
+        //"https://vectortiles.ign.fr/rok4server/1.0.0/PLAN.IGN/{z}/{x}/{y}.pbf"
       }),
       minResolution: 0,
       maxResolution: 200000,
@@ -72,7 +77,7 @@ export class OLViewer {
         console.log("BACKGROUND");
       }
     }
-    await olms.applyStyle(this.layer, style, "plan_ign");
+    //await olms.applyStyle(this.layer, style, "plan_ign");
     this.map.addLayer(this.layer);
   }
 }
