@@ -1,9 +1,0 @@
-*.DS_Store
-*.sublime-workspace
-.cache
-.DS_Store
-.nyc_output
-coverage
-dist
-lib
-node_modules

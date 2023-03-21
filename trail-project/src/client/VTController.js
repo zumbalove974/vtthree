@@ -1,7 +1,7 @@
-import { VTThreeViewer, RENDER_MODE } from "./VTThreeViewer";
-import * as THREE from "three";
-import { OLViewer, IGN_STYLES } from "./OLViewer";
-import Feature from "ol/Feature";
+import { VTThreeViewer } from "./VTThreeViewer";// RENDER_MODE
+//import * as THREE from "three";
+import { OLViewer } from "./OLViewer";// IGN_STYLES
+//import Feature from "ol/Feature";
 import { ZOOM_RES_L93 } from "./Utils";
 export class VTController {
   constructor(
@@ -44,15 +44,16 @@ export class VTController {
       style
     );
     let self = this;
-    this.olViewer.map.on("rendercomplete", function() {
+    this.olViewer.map.on("rendercomplete", function () {
       console.log("map render complete!");
       var mapContainer = document.getElementById("map");
       var mapCanvas = mapContainer.getElementsByTagName("canvas")[0];
       self.threeViewer.setPlaneTexture(mapCanvas);
     });
 
-    this.olViewer.layer.getSource().on("tileloadstart", function(evt) {
+    this.olViewer.layer.getSource().on("tileloadstart", function (evt) {
       self.state.loading++;
+      console.log(evt);
     });
 
     this.olViewer.layer.getSource().on("tileloadend", this.loadTileFeatures);
@@ -80,7 +81,7 @@ export class VTController {
   }
 
   loadVTile() {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve) {
       this.olViewer.layer.getSource().on("tileloadend", resolve);
     });
   }
@@ -105,7 +106,7 @@ export class VTController {
 
   loadTileFeatures(evt) {
     console.log("tile load end!");
-    var z = evt.tile.getTileCoord()[0];
+    //var z = evt.tile.getTileCoord()[0];
     var features = evt.tile.getFeatures();
     let layer = "";
     let self = this;
@@ -141,6 +142,7 @@ export class VTController {
     if (self.state.loading == 0) {
       this.olViewer.layer.getSource().on("tileloadend", evt => {
         self.state.loading--;
+        console.log(evt);
       });
     }
   }

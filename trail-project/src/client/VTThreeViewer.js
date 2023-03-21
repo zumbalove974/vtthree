@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { ZOOM_RES_L93 } from "./Utils";
+//import { ZOOM_RES_L93 } from "./Utils";
 import { BufferGeometryUtils } from "three/examples/jsm/utils/BufferGeometryUtils";
 
 export const mergedRender = "Merged";
@@ -76,10 +76,12 @@ export class VTThreeViewer {
       this.height * 2,
       100
     );
+    /*
     var testmaterial = new THREE.MeshBasicMaterial({
       color: 0xffff00,
       side: THREE.DoubleSide
     });
+    */
     var material = new THREE.MeshBasicMaterial({
       transparent: true
       //color: 0xffff00
@@ -289,7 +291,7 @@ export class VTThreeViewer {
   doubleClick(event) {
     let x = (event.clientX / window.innerWidth) * 2 - 1;
     let y = -(event.clientY / window.innerHeight) * 2 + 1;
-    let self = this;
+    //let self = this;
     this.rayCaster.setFromCamera(new THREE.Vector2(x, y), this.currentCamera);
     var intersects = this.rayCaster.intersectObjects(this.planes.children);
     console.log(intersects);
