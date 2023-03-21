@@ -35,7 +35,7 @@ const paramsWind = {
   style: muetStyle
 };
 
-let params = paramsCovid;
+let params = paramsWind;
 let controller = null;
 async function init() {
   // to read tiff file: https://geotiffjs.github.io/geotiff.js/. other files to be read should be added to the data folder
