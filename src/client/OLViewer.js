@@ -12,22 +12,22 @@ export const planStyle = "Plan";
 export const grisStyle = "Gris";
 export const muetStyle = "Muet";
 
+const urlTilesStyle = "https://api.maptiler.com/tiles/land/tiles.json?key=O0SJusifamZn4On2hGFw";
+const urlLayerStyle = "https://api.maptiler.com/maps/hybrid/style.json?key=O0SJusifamZn4On2hGFw";
+
 let ignStyleMap = new Map();
 
 ignStyleMap.set(
   planStyle,
-  "https://wxs.ign.fr/static/vectorTiles/styles/BDTOPO/classique.json"
-  //"https://vectortiles.ign.fr/demonstrateur/styles/planign.json"
+  urlTilesStyle
 );
 ignStyleMap.set(
   grisStyle,
-  "https://wxs.ign.fr/static/vectorTiles/styles/BDTOPO/classique.json"
-  //"https://vectortiles.ign.fr/demonstrateur/styles/gris.json"
+  urlTilesStyle
 );
 ignStyleMap.set(
   muetStyle,
-  "https://wxs.ign.fr/static/vectorTiles/styles/BDTOPO/classique.json"
-  //"https://vectortiles.ign.fr/demonstrateur/styles/muet.json"
+  urlTilesStyle
 );
 
 export class OLViewer {
@@ -58,26 +58,33 @@ export class OLViewer {
         tileGrid: createXYZ({ maxZoom: 21 }),
         format: new MVT({ featureClass: Feature }),
         //projection: new Projection({ code: "EPSG:3857" }),
+        /*
         url:
-          "https://wxs.ign.fr/latuile/geoportail/tms/1.0.0/BDTOPO/{z}/{x}/{y}.pbf"
-        //"https://vectortiles.ign.fr/rok4server/1.0.0/PLAN.IGN/{z}/{x}/{y}.pbf"
+          "https://api.maptiler.com/tiles/land/{z}/{x}/{y}.pbf?key=O0SJusifamZn4On2hGFw"
+        */
       }),
       minResolution: 0,
       maxResolution: 200000,
       declutter: true
     });
-
+    /*
     var defaultUrl = ignStyleMap.get(styleName);
     let response = await fetch(defaultUrl);
     let style = await response.json();
 
+    console.log("___");
+    console.log(style);
+
     for (let layer of style.layers) {
-      console.log(layer.type);
+      //console.log(layer.type);
       if (layer.type == "background") {
         console.log("BACKGROUND");
       }
-    }
-    //await olms.applyStyle(this.layer, style, "plan_ign");
+    }*/
+    //olms.applyBackground(ignStyleMap, style);
+    //await olms.applyStyle(this.layer, urlLayerStyle);
+
+    await olms.apply(this.map, urlLayerStyle);
     this.map.addLayer(this.layer);
   }
 }
