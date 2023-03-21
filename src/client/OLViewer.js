@@ -12,8 +12,9 @@ export const planStyle = "Plan";
 export const grisStyle = "Gris";
 export const muetStyle = "Muet";
 
-const urlTilesStyle = "https://api.maptiler.com/tiles/land/tiles.json?key=O0SJusifamZn4On2hGFw";
-const urlLayerStyle = "https://api.maptiler.com/maps/hybrid/style.json?key=O0SJusifamZn4On2hGFw";
+const urlTilesStyle = "https://api.maptiler.com/tiles/v3-openmaptiles/tiles.json?key=O0SJusifamZn4On2hGFw";
+const urlTiles = "https://api.maptiler.com/tiles/v3-openmaptiles/{z}/{x}/{y}.pbf?key=O0SJusifamZn4On2hGFw";
+const urlLayerStyle = "https://api.maptiler.com/maps/streets-v2/style.json?key=O0SJusifamZn4On2hGFw";
 
 let ignStyleMap = new Map();
 
@@ -58,15 +59,16 @@ export class OLViewer {
         tileGrid: createXYZ({ maxZoom: 21 }),
         format: new MVT({ featureClass: Feature }),
         //projection: new Projection({ code: "EPSG:3857" }),
-        /*
+        /* // décommenter pour afficher les tiles
         url:
-          "https://api.maptiler.com/tiles/land/{z}/{x}/{y}.pbf?key=O0SJusifamZn4On2hGFw"
+          urlTiles
         */
       }),
       minResolution: 0,
       maxResolution: 200000,
       declutter: true
     });
+
     /*
     var defaultUrl = ignStyleMap.get(styleName);
     let response = await fetch(defaultUrl);
@@ -80,11 +82,13 @@ export class OLViewer {
       if (layer.type == "background") {
         console.log("BACKGROUND");
       }
-    }*/
+    }
+    */
     //olms.applyBackground(ignStyleMap, style);
     //await olms.applyStyle(this.layer, urlLayerStyle);
 
-    await olms.apply(this.map, urlLayerStyle);
+    await olms.apply(this.map, urlLayerStyle); // permet d'afficher une mpa
+    //await olms.applyStyle(this.layer, style); // permet d'afficher une tile
     this.map.addLayer(this.layer);
   }
 }

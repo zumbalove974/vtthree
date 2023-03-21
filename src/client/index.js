@@ -23,7 +23,7 @@ let vavinCenter = proj4(proj4326, proj3857, [vavinLatLon[1], vavinLatLon[0]]);
 
 const paramsCovid = {
   center: parisCenter,
-  zoom: 12,
+  zoom: 10,
   layers: [],
   style: planStyle
 };
@@ -35,7 +35,7 @@ const paramsWind = {
   style: muetStyle
 };
 
-let params = paramsWind;
+let params = paramsCovid;
 let controller = null;
 async function init() {
   // to read tiff file: https://geotiffjs.github.io/geotiff.js/. other files to be read should be added to the data folder
@@ -57,7 +57,7 @@ async function init() {
 function addObjects() {
   //example to add an object to the scene
   let worldCoords = controller.threeViewer.getWorldCoords(vavinCenter); // the getWorldCoords function transform webmercator coordinates into three js world coordinates
-  var geometry = new THREE.BoxBufferGeometry(100, 100, 100);
+  var geometry = new THREE.BoxBufferGeometry(10, 10, 10);
   var material = new THREE.MeshStandardMaterial({ color: 0xff4500 });
   var cube = new THREE.Mesh(geometry, material); //a three js mesh needs a geometry and a material
   cube.position.x = worldCoords[0];
