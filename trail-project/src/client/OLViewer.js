@@ -12,23 +12,23 @@ export const planStyle = "Plan";
 export const grisStyle = "Gris";
 export const muetStyle = "Muet";
 
-const urlTilesStyle = "https://api.maptiler.com/tiles/v3-openmaptiles/tiles.json?key=O0SJusifamZn4On2hGFw";
-const urlTiles = "https://api.maptiler.com/tiles/v3-openmaptiles/{z}/{x}/{y}.pbf?key=O0SJusifamZn4On2hGFw";
+//const urlTilesStyle = "https://api.maptiler.com/tiles/v3-openmaptiles/tiles.json?key=O0SJusifamZn4On2hGFw";
+const urlTiles = "https://wxs.ign.fr/essentiels/geoportail/tms/1.0.0/PLAN.IGN/16/33191/22557.pbf";
 const urlLayerStyle = "https://api.maptiler.com/maps/streets-v2/style.json?key=O0SJusifamZn4On2hGFw";
 
 let ignStyleMap = new Map();
 
 ignStyleMap.set(
   planStyle,
-  urlTilesStyle
+  "https://wxs.ign.fr/static/vectorTiles/styles/PLAN.IGN/essentiels/standard.json"
 );
 ignStyleMap.set(
   grisStyle,
-  urlTilesStyle
+  "https://wxs.ign.fr/static/vectorTiles/styles/PLAN.IGN/essentiels/gris.json"
 );
 ignStyleMap.set(
   muetStyle,
-  urlTilesStyle
+  "https://wxs.ign.fr/static/vectorTiles/styles/PLAN.IGN/essentiels/sans_toponymes.json"
 );
 
 export class OLViewer {
@@ -59,17 +59,17 @@ export class OLViewer {
         tileGrid: createXYZ({ maxZoom: 21 }),
         format: new MVT({ featureClass: Feature }),
         //projection: new Projection({ code: "EPSG:3857" }),
-        /* // décommenter pour afficher les tiles
+        // décommenter pour afficher les tiles
         url:
           urlTiles
-        */
+
       }),
       minResolution: 0,
       maxResolution: 200000,
       declutter: true
     });
 
-    /*
+
     var defaultUrl = ignStyleMap.get(styleName);
     let response = await fetch(defaultUrl);
     let style = await response.json();
@@ -83,7 +83,7 @@ export class OLViewer {
         console.log("BACKGROUND");
       }
     }
-    */
+
     //olms.applyBackground(ignStyleMap, style);
     //await olms.applyStyle(this.layer, urlLayerStyle);
 

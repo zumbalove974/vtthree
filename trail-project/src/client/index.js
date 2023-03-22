@@ -1,32 +1,32 @@
 import "regenerator-runtime/runtime";
 import * as THREE from "three";
-import Feature from "ol/Feature";
+//import Feature from "ol/Feature";
 import { VTController } from "./VTController";
-import { mergedRender, singleRender } from "./VTThreeViewer";
-import { planStyle, grisStyle, muetStyle } from "./OLViewer";
+import { mergedRender } from "./VTThreeViewer";// singleRender
+import { muetStyle } from "./OLViewer"; //  planStyle, grisStyle, 
 import proj4 from "proj4";
 import { proj4326, proj3857 } from "./Utils";
 
 //data can be imported like this or read from the data folder
-import windData from "../../data/wind.json";
-import covidData from "../../data/covid_data.json";
-import * as geotiff from "geotiff";
+//import windData from "../../data/wind.json";
+//import covidData from "../../data/covid_data.json";
+//import * as geotiff from "geotiff";
 
 const width = window.innerWidth; // this makes the 3D canvas full screen
 const height = window.innerHeight; // this makes the 3D canvas full screen
 
-let parisLatLon = [48.8534, 2.3488];
-let parisCenter = proj4(proj4326, proj3857, [parisLatLon[1], parisLatLon[0]]);
+//let parisLatLon = [48.8534, 2.3488];
+//let parisCenter = proj4(proj4326, proj3857, [parisLatLon[1], parisLatLon[0]]);
 
 let vavinLatLon = [48.8425824, 2.3275981];
 let vavinCenter = proj4(proj4326, proj3857, [vavinLatLon[1], vavinLatLon[0]]);
-
+/*
 const paramsCovid = {
   center: parisCenter,
   zoom: 10,
   layers: [],
   style: planStyle
-};
+};*/
 
 const paramsWind = {
   center: vavinCenter,
@@ -35,9 +35,9 @@ const paramsWind = {
   style: muetStyle
 };
 
-let params = paramsCovid;
+let params = paramsWind;
 let controller = null;
-async function init() {
+export const init = async function init() {
   // to read tiff file: https://geotiffjs.github.io/geotiff.js/. other files to be read should be added to the data folder
   // let tiffData = await geotiff.fromUrl("Hauteurs.tif");
 
@@ -66,4 +66,4 @@ function addObjects() {
   controller.threeViewer.scene.add(cube); //all objects have to be added to the threejs scene
 }
 
-init();
+//init();
